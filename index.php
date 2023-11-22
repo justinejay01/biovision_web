@@ -1,3 +1,3 @@
 <?php
-echo "The server is running!"
+ echo "The server is running!";
 ?>

@@ -1,16 +1,13 @@
-<?php
- include "conn.php";
 
- $sql = "SELECT username, password FROM biovision";
-$result = $conn->query($sql);
+<!DOCTYPE HTML>
+<html>  
+<body>
 
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-  }
-} else {
-  echo "0 results";
-}
-$conn->close();
-?>
+<form action="student_register.php" method="post">
+Name: <input type="text" name="firstname"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>
+
+</body>
+</html>
