@@ -25,7 +25,7 @@ document.getElementById("formLogin").onsubmit = function () {
                 document.getElementById("btnloginLogin").setAttribute("disabled", "");
 
                 setTimeout(function () {
-                    window.location.replace("/");
+                    window.location.replace("index.php");
                 }, 3000);
             } else {
                 var loginFailed = document.getElementById("loginFailed");
@@ -62,8 +62,10 @@ document.getElementById("formLogin").onsubmit = function () {
 };
 
 document.getElementById("formReg").onsubmit = function () {
+    var id = document.getElementById("regSchoolID").value;
     var fname = document.getElementById("regFname").value;
     var lname = document.getElementById("regLname").value;
+    var dept = document.getElementById("regDept").value;
     var uname = document.getElementById("regUname").value;
     var email = document.getElementById("regEmail").value;
     var pword = document.getElementById("regPword").value;
@@ -71,7 +73,7 @@ document.getElementById("formReg").onsubmit = function () {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == "2") {
+            if (this.responseText == uname) {
                 var regSuccess = document.getElementById("regSuccess");
                 regSuccess.classList.remove("d-none");
                 regSuccess.classList.add("animate__fadeIn");
@@ -79,7 +81,7 @@ document.getElementById("formReg").onsubmit = function () {
                 document.getElementById("btnregReg").setAttribute("disabled", "");
 
                 setTimeout(function () {
-                    window.location.replace("/");
+                    window.location.replace("auth.php");
                 }, 3000);
             } else if (this.responseText == "1") {
                 var regExist = document.getElementById("regExist");
@@ -105,23 +107,24 @@ document.getElementById("formReg").onsubmit = function () {
                 }, 3500);
                 document.getElementById("regPword").value = "";
             } else {
-                var regFailed = document.getElementById("regFailed");
-                regFailed.classList.remove("d-none");
+                var regError = document.getElementById("regError");
+                regError.innerHTML = this.responseText;
+                regError.classList.remove("d-none");
 
                 document.getElementById("btnregReg").setAttribute("disabled", "");
 
-                if (regFailed.classList.contains("animate__fadeOut")) {
-                    regFailed.classList.toggle("animate__fadeOut");
+                if (regError.classList.contains("animate__fadeOut")) {
+                    regError.classList.toggle("animate__fadeOut");
                 }
 
-                regFailed.classList.toggle("animate__fadeIn");
+                regError.classList.toggle("animate__fadeIn");
 
                 setTimeout(function () {
-                    regFailed.classList.toggle("animate__fadeIn");
-                    regFailed.classList.toggle("animate__fadeOut");
+                    regError.classList.toggle("animate__fadeIn");
+                    regError.classList.toggle("animate__fadeOut");
                 }, 3000);
                 setTimeout(function () {
-                    regFailed.classList.add("d-none");
+                    regError.classList.add("d-none");
                 }, 3000);
                 setTimeout(function () {
                     document.getElementById("btnregReg").removeAttribute("disabled");
@@ -130,10 +133,10 @@ document.getElementById("formReg").onsubmit = function () {
             }
         }
     };
-    xhr.open("POST", "/auth/reg", true);
+    xhr.open("POST", "auth/admin_register.php", true);
     xhr.setRequestHeader(
         "Content-Type",
         "application/x-www-form-urlencoded; charset=UTF-8"
     );
-    xhr.send("uname=" + uname + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pword=" + pword);
+    xhr.send("id=" + id + "&username=" + uname + "&password=" + pword + "&firstname=" + fname + "&lastname=" + lname + "&email=" + email + "&department=" + dept);
 };

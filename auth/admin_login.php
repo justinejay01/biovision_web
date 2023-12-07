@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "conn.php";
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
@@ -27,7 +28,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
         if (password_verify($password, $password_hash)) {
           echo $username_tmp;
-
+          $_SESSION["teacher"] = $username_tmp;
           return;
         } else {
           $errors[] = "Wrong email or password.";
