@@ -50,7 +50,7 @@ if (isset($_SESSION["teacher"])) {
                             <form id="formLogin" action="javascript:void(0);" method="post">
                                 <div class="card-body">
                                     <div class="alert alert-success animate__animated d-none" id="loginSuccess">
-                                        Logging in... Click <a href="/">here</a> if you're not redirected!
+                                        Logging in... Click <a href="index.php">here</a> if you're not redirected!
                                     </div>
                                     <div class="alert alert-danger animate__animated d-none" id="loginFailed">
                                         Incorrect login credentials!

@@ -8,7 +8,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
   $errors = array();
 
-  if ($stmt = $conn->prepare("SELECT username, password FROM admin_acc WHERE username = ? LIMIT 1")) {
+  if ($stmt = $conn->prepare("SELECT t_code, username, password FROM admin_acc WHERE username = ? LIMIT 1")) {
 
     /* bind parameters for markers */
     $stmt->bind_param('s', $username);
@@ -21,14 +21,14 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
       if ($stmt->num_rows > 0) {
         /* bind result variables */
-        $stmt->bind_result($username_tmp, $password_hash);
+        $stmt->bind_result($t_code, $username_tmp, $password_hash);
 
         /* fetch value */
         $stmt->fetch();
 
         if (password_verify($password, $password_hash)) {
           echo $username_tmp;
-          $_SESSION["teacher"] = $username_tmp;
+          $_SESSION["teacher"] = $t_code;
           return;
         } else {
           $errors[] = "Wrong email or password.";
