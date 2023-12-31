@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "161.97.96.188";
+$username = "ausapanx_bio";
+$password = "BioVision1234";
 $db = "ausapanx_biovision";
 
 // Create connection
