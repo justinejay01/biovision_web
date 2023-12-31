@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$db = "biovision";
+$db = "ausapanx_biovision";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
