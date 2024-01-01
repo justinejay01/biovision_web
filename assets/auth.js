@@ -71,8 +71,8 @@ document.getElementById("formReg").onsubmit = function () {
     var pword = document.getElementById("regPword").value;
 
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        try {
+    try {
+        xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText == uname) {
                     var regSuccess = document.getElementById("regSuccess");
@@ -133,14 +133,14 @@ document.getElementById("formReg").onsubmit = function () {
                     document.getElementById("regPword").value = "";
                 }
             }
-        } catch(e) {
-            alert(e);
-        }
-    };
-    xhr.open("POST", "auth/admin_register.php", true);
-    xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded; charset=UTF-8"
-    );
-    xhr.send("id=" + id + "&username=" + uname + "&password=" + pword + "&firstname=" + fname + "&lastname=" + lname + "&email=" + email + "&department=" + dept);
+        };
+        xhr.open("POST", "auth/admin_register.php", true);
+        xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded; charset=UTF-8"
+        );
+        xhr.send("id=" + id + "&username=" + uname + "&password=" + pword + "&firstname=" + fname + "&lastname=" + lname + "&email=" + email + "&department=" + dept);
+    } catch(e) {
+        alert(e);
+    }
 };
