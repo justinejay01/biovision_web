@@ -72,65 +72,69 @@ document.getElementById("formReg").onsubmit = function () {
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == uname) {
-                var regSuccess = document.getElementById("regSuccess");
-                regSuccess.classList.remove("d-none");
-                regSuccess.classList.add("animate__fadeIn");
-
-                document.getElementById("btnregReg").setAttribute("disabled", "");
-
-                setTimeout(function () {
-                    window.location.replace("auth.php");
-                }, 3000);
-            } else if (this.responseText == "1") {
-                var regExist = document.getElementById("regExist");
-                regExist.classList.remove("d-none");
-
-                document.getElementById("btnregReg").setAttribute("disabled", "");
-
-                if (regExist.classList.contains("animate__fadeOut")) {
-                    regExist.classList.toggle("animate__fadeOut");
-                }
-
-                regExist.classList.toggle("animate__fadeIn");
-
-                setTimeout(function () {
+        try {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == uname) {
+                    var regSuccess = document.getElementById("regSuccess");
+                    regSuccess.classList.remove("d-none");
+                    regSuccess.classList.add("animate__fadeIn");
+    
+                    document.getElementById("btnregReg").setAttribute("disabled", "");
+    
+                    setTimeout(function () {
+                        window.location.replace("auth.php");
+                    }, 3000);
+                } else if (this.responseText == "1") {
+                    var regExist = document.getElementById("regExist");
+                    regExist.classList.remove("d-none");
+    
+                    document.getElementById("btnregReg").setAttribute("disabled", "");
+    
+                    if (regExist.classList.contains("animate__fadeOut")) {
+                        regExist.classList.toggle("animate__fadeOut");
+                    }
+    
                     regExist.classList.toggle("animate__fadeIn");
-                    regExist.classList.toggle("animate__fadeOut");
-                }, 2500);
-                setTimeout(function () {
-                    regExist.classList.add("d-none");
-                }, 3000);
-                setTimeout(function () {
-                    document.getElementById("btnregReg").removeAttribute("disabled");
-                }, 3500);
-                document.getElementById("regPword").value = "";
-            } else {
-                var regError = document.getElementById("regError");
-                regError.innerHTML = this.responseText;
-                regError.classList.remove("d-none");
-
-                document.getElementById("btnregReg").setAttribute("disabled", "");
-
-                if (regError.classList.contains("animate__fadeOut")) {
-                    regError.classList.toggle("animate__fadeOut");
-                }
-
-                regError.classList.toggle("animate__fadeIn");
-
-                setTimeout(function () {
+    
+                    setTimeout(function () {
+                        regExist.classList.toggle("animate__fadeIn");
+                        regExist.classList.toggle("animate__fadeOut");
+                    }, 2500);
+                    setTimeout(function () {
+                        regExist.classList.add("d-none");
+                    }, 3000);
+                    setTimeout(function () {
+                        document.getElementById("btnregReg").removeAttribute("disabled");
+                    }, 3500);
+                    document.getElementById("regPword").value = "";
+                } else {
+                    var regError = document.getElementById("regError");
+                    regError.innerHTML = this.responseText;
+                    regError.classList.remove("d-none");
+    
+                    document.getElementById("btnregReg").setAttribute("disabled", "");
+    
+                    if (regError.classList.contains("animate__fadeOut")) {
+                        regError.classList.toggle("animate__fadeOut");
+                    }
+    
                     regError.classList.toggle("animate__fadeIn");
-                    regError.classList.toggle("animate__fadeOut");
-                }, 3000);
-                setTimeout(function () {
-                    regError.classList.add("d-none");
-                }, 3000);
-                setTimeout(function () {
-                    document.getElementById("btnregReg").removeAttribute("disabled");
-                }, 3500);
-                document.getElementById("regPword").value = "";
+    
+                    setTimeout(function () {
+                        regError.classList.toggle("animate__fadeIn");
+                        regError.classList.toggle("animate__fadeOut");
+                    }, 3000);
+                    setTimeout(function () {
+                        regError.classList.add("d-none");
+                    }, 3000);
+                    setTimeout(function () {
+                        document.getElementById("btnregReg").removeAttribute("disabled");
+                    }, 3500);
+                    document.getElementById("regPword").value = "";
+                }
             }
+        } catch(e) {
+            alert(e);
         }
     };
     xhr.open("POST", "auth/admin_register.php", true);

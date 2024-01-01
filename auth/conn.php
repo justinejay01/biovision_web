@@ -1,8 +1,8 @@
 <?php
-$servername = "161.97.96.188";
-$username = "ausapanx_bio";
-$password = "BioVision1234";
-$db = "ausapanx_biovision";
+$servername = "161.97.96.188"; //localhost
+$username = "ausapanx_bio"; //root
+$password = "BioVision1234"; //
+$db = "ausapanx_biovision"; //biovision
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
